@@ -9,8 +9,8 @@ services:
     #     networks: 
     #         - my-network1
     #     depends_on: 
-    #         - mysql
-    #         - redis
+    #         - mysql-db
+    #         - redis-db
     
     # nginx:
     #     build: nginx
@@ -23,24 +23,24 @@ services:
     #         - "443:443"
     
     mysql:
-        image: mysql:5.7.15
+        image: mysql:5.7.22
         networks: 
             - my-network1
         volumes: 
-            - ./mysql-dir/conf:/etc/mysql/conf.d
-            - ./mysql-dir/data:/var/lib/mysql
-            - ./mysql-dir/log:/var/log/mysql
+            - ./mysql/conf:/etc/mysql/conf.d
+            - ./mysql/data:/var/lib/mysql
+            - ./mysql/log:/var/log/mysql
             - /etc/localtime:/etc/localtime:ro
             - /etc/timezone:/etc/timezone:ro
         environment:
-            MYSQL_ROOT_PASSWORD: 123456
-            MYSQL_USER: zler
-            MYSQL_PASSWORD: 123456
+            - MYSQL_ROOT_PASSWORD=123456
         ports: 
             - "3306:3306"
     
-    # redis:
-    #     build: redis
+    # redis-db:
+    #     image: redis:5.0
     #     networks: 
     #         - my-network1
-        
+    #     ports:
+    #         - "6379:6379"
+    #     volumes:
