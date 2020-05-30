@@ -14,7 +14,7 @@ services:
             - mysql
             # - redis
         volumes:
-            - ./code:/var/www/html
+            - ./php-fpm/www:/var/www/html
             - ./php-fpm/conf/php.ini:/usr/local/etc/php/php.ini
             - ./php-fpm/conf/php-fpm.conf:/usr/local/etc/php-fpm.conf
             - ./php-fpm/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
