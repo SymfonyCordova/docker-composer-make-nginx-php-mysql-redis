@@ -14,7 +14,7 @@ services:
             - mysql
             # - redis
         volumes:
-            - ./php-fpm/www:/var/www/html
+            - ./code:/var/www/html
             - ./php-fpm/conf/php.ini:/usr/local/etc/php/php.ini
             - ./php-fpm/conf/php-fpm.conf:/usr/local/etc/php-fpm.conf
             - ./php-fpm/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
@@ -29,7 +29,7 @@ services:
             - php-fpm
         volumes:
             - ./nginx/conf:/etc/nginx/conf.d
-            - ./nginx/html:/var/www/html
+            - ./code:/var/www/html
             - ./nginx/log:/var/log/nginx
         ports: 
             - "80:80"
