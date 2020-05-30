@@ -12,7 +12,7 @@ services:
             - my-network1
         depends_on: 
             - mysql
-            - redis
+            # - redis
         volumes:
             - ./php-fpm/www:/app
             - ./php-fpm/conf/php.ini:/usr/local/etc/php/php.ini
