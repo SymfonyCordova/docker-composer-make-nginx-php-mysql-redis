@@ -23,13 +23,13 @@ services:
     #         - "443:443"
     
     mysql:
-        image: mysql
+        build: mysql-dir
         networks: 
             - my-network1
         volumes: 
-            - ./mysql/conf:/etc/mysql/conf.d
-            - ./mysql/data:/var/lib/mysql
-            - ./mysql/log:/var/log/mysql
+            - ./mysql-dir/conf:/etc/mysql/conf.d
+            - ./mysql-dir/data:/var/lib/mysql
+            - ./mysql-dir/log:/var/log/mysql
             - /etc/localtime:/etc/localtime:ro
             - /etc/timezone:/etc/timezone:ro
         environment:
