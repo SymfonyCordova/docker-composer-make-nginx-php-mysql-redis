@@ -18,7 +18,7 @@ services:
     
     nginx:
         image: nginx
-        networks: :
+        networks:
             - my-network1
         depends_on: 
             - php-fpm
