@@ -17,8 +17,8 @@ services:
             - ./php-fpm/www:/app
             - ./php-fpm/conf/php.ini:/usr/local/etc/php/php.ini
             - ./php-fpm/conf:/usr/local/etc/php-fpm.d
-        # ports: 
-        #     - "9000:9000"
+        ports: 
+            - "9000:9000"
     
     nginx:
         container_name: zler-nginx
