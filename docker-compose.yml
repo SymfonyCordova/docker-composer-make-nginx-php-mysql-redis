@@ -19,8 +19,7 @@ services:
             - ./php-fpm/conf/php-fpm.conf:/usr/local/etc/php-fpm.conf
             - ./php-fpm/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
             - ./php-fpm/conf/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
-            - "9000:9000"
-    
+       
     nginx:
         container_name: zler-nginx
         image: nginx
