@@ -15,7 +15,7 @@ services:
         volumes:
             - ./php-fpm/www:/app
             - ./php-fpm/conf/php.ini:/usr/local/etc/php/php.ini
-            - ./php-fpm/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
+            - ./php-fpm/conf:/usr/local/etc/php-fpm.d
     
     nginx:
         container_name: zler-nginx
