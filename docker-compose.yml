@@ -4,23 +4,31 @@ networks:
     my-network1:
 
 services: 
-    # php-fpm:
-    #     build: php-fpm
-    #     networks: 
-    #         - my-network1
-    #     depends_on: 
-    #         - mysql-db
-    #         - redis-db
+    php-fpm:
+        build: php-fpm
+        networks: 
+            - my-network1
+        depends_on: 
+            - mysql-db
+            - redis-db
+        volumes:
+            - ./php-fpm/www:/app
+            - ./php-fpm/conf/php.ini:/usr/local/etc/php/php.ini
+            - ./php-fpm/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
     
-    # nginx:
-    #     build: nginx
-    #     networks: :
-    #         - my-network1
-    #     depends_on: 
-    #         - php-fpm
-    #     ports: 
-    #         - "80:80"
-    #         - "443:443"
+    nginx:
+        image: nginx
+        networks: :
+            - my-network1
+        depends_on: 
+            - php-fpm
+        volumes:
+            - ./nginx/conf:/etc/nginx/conf.d
+            - ./nginx/html:/var/www/html
+            - ./nginx/log:/var/log/nginx
+        ports: 
+            - "80:80"
+            - "443:443"
 
     mysql:
         image: mysql:5.7.22
