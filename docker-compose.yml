@@ -5,18 +5,20 @@ networks:
 
 services: 
     php-fpm:
+        container_name: zler-php-fpm
         build: php-fpm
         networks: 
             - my-network1
         depends_on: 
-            - mysql-db
-            - redis-db
+            - mysql
+            - redis
         volumes:
             - ./php-fpm/www:/app
             - ./php-fpm/conf/php.ini:/usr/local/etc/php/php.ini
             - ./php-fpm/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
     
     nginx:
+        container_name: zler-nginx
         image: nginx
         networks:
             - my-network1
@@ -31,6 +33,7 @@ services:
             - "443:443"
 
     mysql:
+        container_name: zler-mysql
         image: mysql:5.7.22
         networks: 
             - my-network1
@@ -46,6 +49,7 @@ services:
             - "3306:3306"
     
     redis-db:
+        container_name: zler-redis
         image: redis:5.0
         networks: 
             - my-network1
