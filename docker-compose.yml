@@ -1,7 +1,7 @@
 version: '2'
 
 networks: 
-    my-network1
+    my-network1:
 
 services: 
     # php-fpm:
