@@ -1,7 +1,8 @@
-version: '2'
+version: '3'
 
 networks: 
     my-network1:
+        driver: bridge
 
 services: 
     php-fpm:
