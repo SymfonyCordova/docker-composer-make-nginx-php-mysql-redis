@@ -1,0 +1,46 @@
+version: '2'
+
+networks: 
+    my-network1
+
+services: 
+    php-fpm:
+        build: php-fpm
+        networks: 
+            - my-network1
+        depends_on: 
+            - mysql
+            - redis
+    
+    nginx:
+        build: nginx
+        networks: :
+            - my-network1
+        depends_on: 
+            - php-fpm
+        ports: 
+            - "80:80"
+            - "443:443"
+    
+    mysql:
+        image: "mysql:5.7.15"
+        networks: 
+            - my-network1
+        volumes: 
+            - ./mysql/conf:/etc/mysql/conf.d
+            - ./mysql/data:/var/lib/mysql
+            - ./mysql/log:/var/log/mysql
+            - /etc/localtime:/etc/localtime:ro
+            - /etc/timezone:/etc/timezone:ro
+        environment:
+            MYSQL_ROOT_PASSWORD: 123456
+            MYSQL_USER: zler
+            MYSQL_PASSWORD: 123456
+        ports: 
+            - "3306:3306"
+    
+    redis:
+        build: redis
+        networks: 
+            - my-network1
+        
