@@ -4,23 +4,23 @@ networks:
     my-network1
 
 services: 
-    php-fpm:
-        build: php-fpm
-        networks: 
-            - my-network1
-        depends_on: 
-            - mysql
-            - redis
+    # php-fpm:
+    #     build: php-fpm
+    #     networks: 
+    #         - my-network1
+    #     depends_on: 
+    #         - mysql
+    #         - redis
     
-    nginx:
-        build: nginx
-        networks: :
-            - my-network1
-        depends_on: 
-            - php-fpm
-        ports: 
-            - "80:80"
-            - "443:443"
+    # nginx:
+    #     build: nginx
+    #     networks: :
+    #         - my-network1
+    #     depends_on: 
+    #         - php-fpm
+    #     ports: 
+    #         - "80:80"
+    #         - "443:443"
     
     mysql:
         image: "mysql:5.7.15"
@@ -39,8 +39,8 @@ services:
         ports: 
             - "3306:3306"
     
-    redis:
-        build: redis
-        networks: 
-            - my-network1
+    # redis:
+    #     build: redis
+    #     networks: 
+    #         - my-network1
         
