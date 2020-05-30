@@ -14,10 +14,11 @@ services:
             - mysql
             # - redis
         volumes:
-            - ./php-fpm/www:/app
+            - ./php-fpm/www:/var/www/html
             - ./php-fpm/conf/php.ini:/usr/local/etc/php/php.ini
+            - ./php-fpm/conf/php-fpm.conf:/usr/local/etc/php-fpm.conf
             - ./php-fpm/conf/www.conf:/usr/local/etc/php-fpm.d/www.conf
-        ports: 
+            - ./php-fpm/conf/zz-docker.conf:/usr/local/etc/php-fpm.d/zz-docker.conf
             - "9000:9000"
     
     nginx:
