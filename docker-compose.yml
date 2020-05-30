@@ -48,7 +48,7 @@ services:
         ports: 
             - "3306:3306"
     
-    redis-db:
+    redis:
         container_name: zler-redis
         image: redis:5.0
         networks: 
