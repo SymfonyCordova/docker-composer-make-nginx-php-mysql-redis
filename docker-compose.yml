@@ -53,7 +53,7 @@ services:
     
     redis:
         container_name: zler-redis
-        image: redis:5.0
+        image: redis:5.0.0
         networks: 
             - my-network1
         ports:

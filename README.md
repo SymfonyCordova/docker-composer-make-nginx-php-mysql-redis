@@ -45,13 +45,17 @@ echo "deb http://mirrors.163.com/debian/ stretch-proposed-updates main non-free 
 echo "deb-src http://mirrors.163.com/debian/ stretch main non-free contrib" >>/etc/apt/sources.list
 
 echo "deb-src http://mirrors.163.com/debian/ stretch-proposed-updates main non-free contrib" >>/etc/apt/sources.list
+
+echo "deb-src http://mirrors.ustc.edu.cn/debian/ stable main contrib non-free" >>/etc/apt/sources.list
+
+echo "deb-src http://mirrors.ustc.edu.cn/debian/ stable-updates main contrib non-free" >>/etc/apt/sources.list
 ```
 
 例如：
 
 ```shell
-apt update
-	
+apt update && apt upgrade -y
+
 # 安装pod_mysql
 docker-php-ext-install pdo_mysql
 
@@ -65,7 +69,36 @@ docker-php-ext-enable redis
 docker-php-ext-install bcmath
 
 # 安装gd
+apt install zlib1g
+apt install zlib1g-dev
+apt install libz-dev
+apt install -y libfreetype6-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev 
+docker-php-ext-install iconv
+apt install libtinfo5
+apt install libreadline7   
+apt install libtinfo-dev
+apt install libmcrypt-dev libreadline-dev
+pecl install https://pecl.php.net/get/mcrypt-1.0.3.tgz 
+docker-php-ext-enable mcrypt
+pecl install https://pecl.php.net/get/gdchart-0.2.0.tgz
 
+apt-get update && apt-get install -y \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libpng-dev \
+    && docker-php-ext-configure gd --with-freetype-dir --with-jpeg-dir --with-png-dir \
+    && docker-php-ext-install -j$(nproc) gd
+
+# 安装session
+docker-php-ext-install session
+
+# 安装composer
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === 'e0012edf3e80b6978849f5eff0d4b4e4c79ff1609dd1e613307e16318854d24ae64f26d17af3ef0bf7cfb710ca74755a') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+
+mv composer.phar /usr/local/bin/composer
 
 # 每次安装扩展需要重启服务器
 docker restart zler-php-fpm
