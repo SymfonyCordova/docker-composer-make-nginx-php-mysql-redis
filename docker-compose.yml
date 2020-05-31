@@ -7,8 +7,7 @@ networks:
 services: 
     php-fpm:
         container_name: zler-php-fpm
-        build: php-fpm
-        # image: php:7.3-fpm
+        image: php:7.3-fpm
         networks: 
             - my-network1
         depends_on: 
