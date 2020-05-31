@@ -12,7 +12,7 @@ services:
             - my-network1
         depends_on: 
             - mysql
-            # - redis
+            - redis
         volumes:
             - ./php-fpm/www:/var/www/html
             - ./php-fpm/conf/php.ini:/usr/local/etc/php/php.ini
@@ -51,13 +51,13 @@ services:
         ports: 
             - "3306:3306"
     
-    # redis:
-    #     container_name: zler-redis
-    #     image: redis:5.0
-    #     networks: 
-    #         - my-network1
-    #     ports:
-    #         - "6379:6379"
-    #     volumes:
-    #         - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
-    #         - ./redis/data:/data
+    redis:
+        container_name: zler-redis
+        image: redis:5.0
+        networks: 
+            - my-network1
+        ports:
+            - "6379:6379"
+        volumes:
+            - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
+            - ./redis/data:/data
