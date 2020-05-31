@@ -8,6 +8,7 @@ services:
     php-fpm:
         container_name: zler-php-fpm
         image: php:7.3-fpm
+        restart: always
         networks: 
             - my-network1
         depends_on: 
@@ -23,6 +24,7 @@ services:
     nginx:
         container_name: zler-nginx
         image: nginx
+        restart: always
         networks:
             - my-network1
         depends_on: 
@@ -38,6 +40,7 @@ services:
     mysql:
         container_name: zler-mysql
         image: mysql:5.7.22
+        restart: always
         networks: 
             - my-network1
         volumes: 
@@ -54,6 +57,7 @@ services:
     redis:
         container_name: zler-redis
         image: redis:5.0.0
+        restart: always
         networks: 
             - my-network1
         ports:
