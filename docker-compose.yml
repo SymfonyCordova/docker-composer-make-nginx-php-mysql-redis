@@ -29,7 +29,7 @@ services:
             - php-fpm
         volumes:
             - ./nginx/conf:/etc/nginx/conf.d
-            - ./code:/var/www/html
+            - ./nginx/html:/var/www/html
             - ./nginx/log:/var/log/nginx
         ports: 
             - "80:80"
