@@ -49,6 +49,9 @@ echo "deb-src http://mirrors.163.com/debian/ stretch-proposed-updates main non-f
 echo "deb-src http://mirrors.ustc.edu.cn/debian/ stable main contrib non-free" >>/etc/apt/sources.list
 
 echo "deb-src http://mirrors.ustc.edu.cn/debian/ stable-updates main contrib non-free" >>/etc/apt/sources.list
+
+
+
 ```
 
 例如：

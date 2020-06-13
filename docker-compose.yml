@@ -65,3 +65,19 @@ services:
         volumes:
             - ./redis/redis.conf:/usr/local/etc/redis/redis.conf
             - ./redis/data:/data
+    
+    elasticsearch:
+        container_name: zler-elasticsearch
+        image: elasticsearch:5.5.1
+        environment:
+            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+            - bootstrap.memory_lock=true
+            - discovery.type=single-node
+        networks: 
+             - my-network1
+        ports: 
+            - "9200:9200"
+            - "9300:9300"
+        volumes:
+            - ./elasticsearch/data:/usr/share/elasticsearch/data
+            - ./elasticsearch/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
