@@ -104,6 +104,16 @@ mv composer.phar /usr/local/bin/composer
 docker restart zler-php-fpm
 ```
 
+## 安装elasticsearch中文插件
+
+```shell
+ docker exec -ti zler-elasticsearch bash
+ 
+./bin/elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v5.5.1/elasticsearch-analysis-ik-5.5.1.zip
+```
+
+
+
 # 如何构建gitlab代码仓库
 
 1. 文档: https://docs.gitlab.com/omnibus/docker/README.html#install-gitlab-using-docker-engine
@@ -159,7 +169,6 @@ docker restart zler-php-fpm
    sudo docker logs -f gitlab
    ```
 
-   
 
 
 
