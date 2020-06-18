@@ -4,7 +4,7 @@ FROM centos:centos7
 RUN yum -y update && \
     yum -y install  gcc gcc-c++ autoconf automake make && \
     yum -y install  zlib zlib-devel openssl* pcre* wget lua-devel && \
-    yum -y install  unzip zip libxslt-devel gd-devel perl perl-ExtUtils-Embed
+    yum -y install  unzip zip libxslt-devel gd-devel perl-ExtUtils-Embed GeoI GeoIP-data GeoIP-devel
 
 #MAINTAINER 维护者信息
 MAINTAINER zler 724174309@qq.com
