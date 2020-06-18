@@ -10,8 +10,7 @@ RUN yum -y update && \
 MAINTAINER zler 724174309@qq.com
 
 #ADD  获取url中的文件,放在当前目录下
-#ADD http://nginx.org/download/nginx-1.14.0.tar.gz /tmp/
-ADD ./nginx-1.14.0.tar.gz /tmp/
+ADD ./nginx-1.14.2.tar.gz /tmp/
 #LuaJIT
 #ADD http://luajit.org/download/LuaJIT-2.0.5.tar.gz /tmp/
 ADD https://github.com/LuaJIT/LuaJIT/archive/v2.0.5.tar.gz /tmp/
@@ -60,7 +59,7 @@ RUN mkdir -p {/usr/local/nginx/logs,/var/lock}
 
 #编译安装Nginx
 RUN useradd -M -s /sbin/nologin nginx
-RUN tar -zxvf nginx-1.14.0.tar.gz
+RUN tar -zxvf nginx-1.14.2.tar.gz
 RUN mkdir -p /usr/local/nginx
 RUN cd /tmp/nginx-1.14.0 \
     && ./configure --prefix=/etc/nginx --user=nginx --group=nginx \
