@@ -59,9 +59,9 @@ RUN mkdir -p {/usr/local/nginx/logs,/var/lock}
 
 #编译安装Nginx
 RUN useradd -M -s /sbin/nologin nginx
-RUN tar -zxvf nginx-1.14.2.tar.gz
+#RUN tar -zxvf nginx-1.14.2.tar.gz
 RUN mkdir -p /usr/local/nginx
-RUN cd /tmp/nginx-1.14.0 \
+RUN cd /tmp/nginx-1.14.2 \
     && ./configure --prefix=/etc/nginx --user=nginx --group=nginx \
     --conf-path=/etc/nginx/nginx.conf \
     --error-log-path=/var/log/nginx/error.log \
