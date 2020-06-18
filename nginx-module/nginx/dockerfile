@@ -6,8 +6,6 @@ RUN yum -y update && \
     yum -y install  zlib zlib-devel openssl* pcre* wget lua-devel && \
     yum install -y unzip zip 
 
-
-
 #MAINTAINER 维护者信息
 MAINTAINER zler 724174309@qq.com
 
