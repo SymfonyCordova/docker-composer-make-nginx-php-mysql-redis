@@ -122,4 +122,4 @@ EXPOSE 80 443
 
 #CMD 运行以下命令
 #CMD ["nginx"]
-CMD ["/etc/nginx/sbin/nginx","-g","daemon off;"]
+CMD ["/usr/sbin/nginx","-g","daemon off;"]
