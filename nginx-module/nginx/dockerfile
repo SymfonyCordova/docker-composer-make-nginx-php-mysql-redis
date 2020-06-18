@@ -1,17 +1,20 @@
 FROM centos:centos7
 
 #安装相关依赖
-RUN yum -y update
-RUN yum -y install  gcc gcc-c++ autoconf automake make
-RUN yum -y install  zlib zlib-devel openssl* pcre* wget lua-devel
-RUN yum install -y unzip zip
+RUN yum -y update && \
+    yum -y install  gcc gcc-c++ autoconf automake make && \
+    yum -y install  zlib zlib-devel openssl* pcre* wget lua-devel && \
+    yum install -y unzip zip 
+
+
 
 #MAINTAINER 维护者信息
 MAINTAINER zler 724174309@qq.com
 
 #ADD  获取url中的文件,放在当前目录下
-ADD http://nginx.org/download/nginx-1.14.0.tar.gz /tmp/
-#LuaJIT 2.1
+#ADD http://nginx.org/download/nginx-1.14.0.tar.gz /tmp/
+ADD ./nginx-1.14.0.tar.gz /tmp/
+#LuaJIT
 #ADD http://luajit.org/download/LuaJIT-2.0.5.tar.gz /tmp/
 ADD https://github.com/LuaJIT/LuaJIT/archive/v2.0.5.tar.gz /tmp/
 #ngx_devel_kit（NDK）模块
@@ -28,8 +31,7 @@ ADD ./redis2-nginx-module-0.14.zip /tmp/
 WORKDIR  /tmp 
 
 #安装LuaJIT 2.0.5
-#RUN wget http://luajit.org/download/LuaJIT-2.0.5.tar.gz -P /tmp/
-RUN tar zxf v2.0.5.tar.gz
+RUN tar -zxvf v2.0.5.tar.gz
 WORKDIR  /tmp/LuaJIT-2.0.5
 #RUN cd LuaJIT-2.0.5
 RUN make PREFIX=/usr/local/luajit 
@@ -48,13 +50,13 @@ RUN cp -r lua-nginx-module-0.10.13/ /usr/local/src/
 RUN tar -xzvf ngx_cache_purge-2.3.tar.gz
 RUN cp -r ngx_cache_purge-2.3/ /usr/local/src/
 
-#设置环境变量
-RUN export LUAJIT_LIB=/usr/local/lib
-RUN export LUAJIT_INC=/usr/local/include/luajit-2.0
-
 #安装redis2-nginx-module模块
 RUN unzip redis2-nginx-module-0.14.zip
 RUN cp -r redis2-nginx-module-0.14/ /usr/local/src/
+
+#设置环境变量
+RUN export LUAJIT_LIB=/usr/local/lib
+RUN export LUAJIT_INC=/usr/local/include/luajit-2.0
 
 RUN mkdir -p {/usr/local/nginx/logs,/var/lock}
 
@@ -76,7 +78,7 @@ RUN cd /tmp/nginx-1.14.0 \
     --add-module=/usr/local/src/lua-nginx-module-0.10.13 \
     --add-module=/usr/local/src/ngx_devel_kit-0.3.0 \
     --add-module=/usr/local/src/ngx_cache_purge-2.3 \
-    --add-module=/usr/local/src/redis-nginx-module-0.14 \
+    --add-module=/usr/local/src/redis2-nginx-module-0.14 \
     && make && make install
 #参数说明
 #--prefix 用于指定nginx编译后的安装目录
