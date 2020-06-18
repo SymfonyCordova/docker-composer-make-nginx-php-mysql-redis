@@ -20,7 +20,7 @@ ADD https://github.com/openresty/lua-nginx-module/archive/v0.10.13.tar.gz /tmp/
 #nginx ngx_cache_purge模块
 ADD http://labs.frickle.com/files/ngx_cache_purge-2.3.tar.gz  /tmp/
 #nginx-redis
-ADD ./redis-nginx-module-0.14/ /usr/local/src/
+ADD ./redis2-nginx-module-0.14.zip /tmp/
 
 
 #切换目录
@@ -50,6 +50,10 @@ RUN cp -r ngx_cache_purge-2.3/ /usr/local/src/
 #设置环境变量
 RUN export LUAJIT_LIB=/usr/local/lib
 RUN export LUAJIT_INC=/usr/local/include/luajit-2.0
+
+#安装redis2-nginx-module模块
+RUN unzip redis2-nginx-module-0.14.zip
+RUN cp -r redis2-nginx-module-0.14/ /usr/local/src/
 
 RUN mkdir -p {/usr/local/nginx/logs,/var/lock}
 
