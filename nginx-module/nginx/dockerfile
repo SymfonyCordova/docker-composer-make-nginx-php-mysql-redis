@@ -9,26 +9,21 @@ RUN yum -y update && \
 #MAINTAINER 维护者信息
 MAINTAINER zler 724174309@qq.com
 
-#ADD  获取url中的文件,放在当前目录下
+#nginx
 ADD ./nginx-1.14.2.tar.gz /tmp/
 #LuaJIT
-#ADD http://luajit.org/download/LuaJIT-2.0.5.tar.gz /tmp/
-ADD https://github.com/LuaJIT/LuaJIT/archive/v2.0.5.tar.gz /tmp/
+ADD ./LuaJIT-2.0.5.tar.gz /tmp/
 #ngx_devel_kit（NDK）模块
-ADD https://github.com/simpl/ngx_devel_kit/archive/v0.3.0.tar.gz /tmp/
+ADD ./ngx_devel_kit-0.3.0.tar.gz /tmp/
 #lua-nginx-module 模块
-ADD https://github.com/openresty/lua-nginx-module/archive/v0.10.13.tar.gz /tmp/
+ADD ./lua-nginx-module-0.10.13.tar.gz /tmp/
 #nginx ngx_cache_purge模块
-ADD http://labs.frickle.com/files/ngx_cache_purge-2.3.tar.gz  /tmp/
+ADD ./ngx_cache_purge-2.3.tar.gz  /tmp/
 #nginx-redis
 ADD ./redis2-nginx-module-0.14.zip /tmp/
 
 
-#切换目录
-WORKDIR  /tmp 
-
 #安装LuaJIT 2.0.5
-RUN tar -zxvf v2.0.5.tar.gz
 WORKDIR  /tmp/LuaJIT-2.0.5
 #RUN cd LuaJIT-2.0.5
 RUN make PREFIX=/usr/local/luajit 
@@ -36,15 +31,12 @@ RUN make install PREFIX=/usr/local/luajit
 
 #安装ngx_devel_kit(NDK)
 WORKDIR  /tmp
-RUN tar -xzvf v0.3.0.tar.gz
 RUN cp -r ngx_devel_kit-0.3.0/ /usr/local/src/
 
 #安装lua-nginx-module模块
-RUN tar -xzvf v0.10.13.tar.gz
 RUN cp -r lua-nginx-module-0.10.13/ /usr/local/src/
 
 #安装nginx ngx_cache_purge模块
-RUN tar -xzvf ngx_cache_purge-2.3.tar.gz
 RUN cp -r ngx_cache_purge-2.3/ /usr/local/src/
 
 #安装redis2-nginx-module模块
